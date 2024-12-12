@@ -1,66 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Life Game</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Last Gasp Furniture</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <script>
-        // Initialize variables for tracking wins and losses
-        let wins = 0;
-        let losses = 0;
-
-        // Prompt the player for their name
-        let playerName = prompt("Welcome to the Real Life Game! What is your name?");
-        while (!playerName || playerName.trim() === "") {
-            playerName = prompt("Please enter a valid name:");
-        }
-
-        // Main game loop
-        let playAgain = "y";
-        while (playAgain.toLowerCase() === "y") {
-            // Ask the player to choose even or odd
-            let playerChoice = prompt(`${playerName}, please choose "even" or "odd":`);
-            while (!playerChoice || !["even", "odd"].includes(playerChoice.toLowerCase())) {
-                playerChoice = prompt(`Invalid choice. Please enter "even" or "odd":`);
-            }
-            playerChoice = playerChoice.toLowerCase();
-
-            // Generate two random numbers between 1 and 4
-            let num1 = Math.floor(Math.random() * 4) + 1;
-            let num2 = Math.floor(Math.random() * 4) + 1;
-            let sum = num1 + num2;
-
-            // Determine if the sum is even or odd
-            let isEven = sum % 2 === 0;
-
-            // Check the game result
-            let result;
-            if ((isEven && playerChoice === "even") || (!isEven && playerChoice === "odd")) {
-                wins++;
-                result = "win";
-            } else {
-                losses++;
-                result = "lose";
-            }
-
-            // Display the game result
-            alert(
-                `${playerName}, you chose ${playerChoice}, the sum was ${sum}, which is an ${
-                    isEven ? "even" : "odd"
-                } number. You ${result}!\nThat's ${wins} wins and ${losses} losses!\nWould you like to play again? (y/n)`
-            );
-
-            // Ask if the player wants to play again
-            playAgain = prompt("Would you like to play again? (y/n):");
-            while (!playAgain || !["y", "n"].includes(playAgain.toLowerCase())) {
-                playAgain = prompt("Invalid input. Please enter 'y' or 'n':");
-            }
-        }
-
-        // End the game session
-        alert(`Thanks for playing, ${playerName}! Final score: ${wins} wins and ${losses} losses.`);
-    </script>
+  <div class="container">
+    <h2>Last Gasp Furniture</h2>
+    <button onclick="startOrder()">Make a Purchase</button>
+    <div id="invoice" class="hidden">
+      <h3>Invoice</h3>
+      <div id="order-summary"></div>
+      <hr>
+      <div id="transaction-summary"></div>
+      <button onclick="resetApp()">Shop Again</button>
+    </div>
+  </div>
+  <script src="js/script.js"></script>
 </body>
 </html>
